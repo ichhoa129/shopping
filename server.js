@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.get('/',(req,res) => res.render('index'));
 //get and show users
 app.get('/users', (req,res) =>res.render('users/index',{
-    db.get('users').value();
+    users: db.get('users').value()
 }));
 //search user matched chars
 app.get('/users/search',(req,res)=>{
