@@ -1,6 +1,9 @@
-h1 Create User
-form(action="/users/create", method="POST")
- label(for="create") Name
- input(type="text", name="name", id="create")
- button Create
-a(href="/") Get to index
+extends ../layout/common.pug 
+
+block bootstrap
+ h1 Create User
+ form(action="/users/create", method="POST",class="form-inline")
+  .form-group.mx-sm-3.mb-2
+   input(type="text", name="name", class="form-control",placeholder="Name")
+   button(class="btn btn-primary ml-2 ") Create
+ a(href="/",class="btn btn-secondary") Get to index
