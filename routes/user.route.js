@@ -16,8 +16,9 @@ router.get('/search',(req,res)=>{
     res.render('users/index',{users: matchedUsers});
 }); 
 //get id and render from db for view
-router.get('/view:id',(req,res)=>{
+router.get('/view/:id',(req,res)=>{
     var id = req.params.id;
+    console.log(id);
     var user = db.get('users').find({ id: id}).value();
     res.render('users/view',{ user: user})
 });
@@ -29,11 +30,4 @@ router.post('/create',(req,res)=>{
      res.redirect('/users');
 });
 
-
-
-
-
-
-
-
-module.exports = router
+module.exports = router;
