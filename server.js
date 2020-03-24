@@ -26,13 +26,14 @@ app.get('/users', (req,res) =>res.render('users/index',{
 }));
 app.get('/users/create',(req,res)=>res.render('users/create'));
 //search user matched chars
-// app.get('/users/search',(req,res)=>{
-//     var q = req.query.q;
-//     var matchedUsers = users.filter(user => user.name.toLowerCase().indexOf(q.toLowerCase()) !== -1 );
-//     res.render('users/index',{users: matchedUsers});
-// }); 
-//get id and render from db
-app.get('/users/:id',(req,res)=>{
+app.get('/users/search',(req,res)=>{
+    var q = req.query.q; //what
+    users = db.get('users').value();
+    var matchedUsers = users.filter(user => user.name.toLowerCase().indexOf(q.toLowerCase()) !== -1 );
+    res.render('users/index',{users: matchedUsers});
+}); 
+//get id and render from db for view
+app.get('/users/view:id',(req,res)=>{
     var id = req.params.id;
     var user = db.get('users').find({ id: id}).value();
     res.render('users/view',{ user: user})
