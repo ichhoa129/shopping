@@ -7,12 +7,22 @@ block bootstrap
  form(action="/users/search" method="GET", class="d-flex")
   input(type="text", name="q",class="input-group-text")
   button(class="btn btn-primary ml-2") Search
-  a(href="/users/create",class="btn btn-secondary ml-2") Create New 
-  a(href="/",class="btn btn-secondary ml-2") Get to index
- ul 
-  each user in users
-   li
-    span= user.name 
-    span &nbsp;
-    a(href="/users/view/" + user.id) View
-
+ table(class="table",style="width:80%")
+  thread    
+   tr
+    th Name
+    th Phone
+    th Information
+    th 
+   tbody 
+   each user in users
+    tr
+     td(scope="row")=user.name
+     td=user.phone
+     td 
+         
+         a.btn.btn-light(href="/users/view/" + user.id) View
+     td
+      button.close(type='button', aria-label='Close')
+       span(aria-hidden='true') &times;
+ 

@@ -1,20 +1,9 @@
 {
   "users": [
     {
-      "id": "sihf",
-      "name": "Hoa"
-    },
-    {
-      "name": "Ich Hoa",
-      "id": "3I45lBbam"
-    },
-    {
-      "name": "ichhoa",
-      "id": "KHNz6GvPh"
-    },
-    {
-      "name": "Thor",
-      "id": "yNi9zATXH"
+      "name": "Nguyen Ich Hoa",
+      "phone": "0123456789",
+      "id": "RdAn-40QF"
     }
   ]
 }

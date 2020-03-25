@@ -10,6 +10,7 @@ module.exports.index = (req, res) => {
 module.exports.create = (req, res) => res.render("users/create");
 module.exports.search = (req, res) => {
   var q = req.query.q;
+  console.log(q);
   var matchedUsers = db
     .get("users")
     .value()
@@ -24,6 +25,7 @@ module.exports.viewId = (req, res) => {
     .value();
   res.render("users/view", { user: user });
 };
+// set users to database
 module.exports.postCreate = (req, res) => {
   req.body.id = shortid.generate();
   db.get("users")
