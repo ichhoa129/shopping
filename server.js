@@ -1,7 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cookiParser= require('cookie-parser')
-const userRoutes = require('./routes/user.route')
+const cookieParser= require('cookie-parser');
+const userRoutes = require('./routes/user.route');
+const authRoutes = require('./routes/auth.route');
+const authMiddleware = require("./middlewares/auth.middleware");
+const regRoutes = require('./routes/register.route');
+
 const app = express();
 
 
@@ -13,11 +17,13 @@ app.set('views', './views');
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-app.use(cookiParser());
+app.use(cookieParser());
 
 //render index page
 app.get('/',(req,res) => res.render('index'));
-app.use('/users',userRoutes);
+app.use('/users',authMiddleware.requireAuth,userRoutes);
+app.use('/auth',authRoutes);
+app.use('/',regRoutes);
 app.use(express.static('public'));
 
 app.listen(port,()=> console.log('Listening on port 8000'));

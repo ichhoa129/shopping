@@ -33,3 +33,6 @@ module.exports.postCreate = (req, res) => {
     .write();
   res.redirect("/users");
 };
+module.exports.postDel = (req,res)=>{
+  var users = db.get('users').find
+}

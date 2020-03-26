@@ -9,6 +9,6 @@ block bootstrap
 
  form(action="/users/create", method="POST",class="d-flex")
    input(type="text", name="name", class="input-group-text",placeholder="Name", value=value ? value.name : "")
-   input(type="text", name="phone", class="input-group-text ml-3",placeholder="phone", value=value ? value.phone : "" )
+   input(type="tel", name="phone",pattern="[0-9]{10}", class="input-group-text ml-3",placeholder="phone", value=value ? value.phone : "" )
    button(class="btn btn-primary ml-2 ") Create
  a(href="/",class="btn btn-secondary") Get to index
