@@ -20,7 +20,9 @@ module.exports.postLogin = (req,res)=>{
        res.render('auth/login',{ errors:['Wrong password.'], value: req.body});
        return;
     }
-    if(acc && acc.password === encryptedPass)
-    res.cookie('accId',acc.id);
+    
+    res.cookie('accId',acc.id,{
+         signed: true
+        });
     res.redirect('/users');
 }

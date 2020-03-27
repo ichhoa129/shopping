@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser= require('cookie-parser');
@@ -5,6 +6,7 @@ const userRoutes = require('./routes/user.route');
 const authRoutes = require('./routes/auth.route');
 const authMiddleware = require("./middlewares/auth.middleware");
 const regRoutes = require('./routes/register.route');
+
 
 const app = express();
 
@@ -17,7 +19,7 @@ app.set('views', './views');
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-app.use(cookieParser());
+app.use(cookieParser(process.env.SESSION_SECRET));
 
 //render index page
 app.get('/',(req,res) => res.render('index'));
