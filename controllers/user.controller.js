@@ -9,12 +9,11 @@ module.exports.index = (req, res) => {
 };
 module.exports.create = (req, res) => res.render("users/create");
 module.exports.search = (req, res) => {
-  var q = req.query.q;
-  console.log(q);
+  var name = req.query.name;
   var matchedUsers = db
     .get("users")
     .value()
-    .filter(user => user.name.toLowerCase().indexOf(q.toLowerCase()) !== -1);
+    .filter(user => user.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
   res.render("users/index", { users: matchedUsers });
 };
 module.exports.viewId = (req, res) => {

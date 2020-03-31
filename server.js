@@ -4,8 +4,10 @@ const bodyParser = require('body-parser');
 const cookieParser= require('cookie-parser');
 const userRoutes = require('./routes/user.route');
 const authRoutes = require('./routes/auth.route');
+const productRoutes = require('./routes/product.route');
 const authMiddleware = require("./middlewares/auth.middleware");
 const regRoutes = require('./routes/register.route');
+
 
 
 const app = express();
@@ -26,6 +28,7 @@ app.get('/',(req,res) => res.render('index'));
 app.use('/users',authMiddleware.requireAuth,userRoutes);
 app.use('/auth',authRoutes);
 app.use('/',regRoutes);
+app.use('/products',productRoutes);
 app.use(express.static('public'));
 
 app.listen(port,()=> console.log('Listening on port 8000'));

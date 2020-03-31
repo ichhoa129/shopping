@@ -1,0 +1,33 @@
+extends ../layout/common.pug 
+
+block bootstrap
+ h1.mt-5 Products
+
+ 
+ form(action="/users/search" method="GET", class="d-flex justify-content-end ")
+  input(type="text", name="q",class="input-group-text")
+  button(class="btn btn-primary ml-2") Search
+ 
+ .row
+  each product in products
+   .col
+     .card.m-1(style='width: 15rem;')
+      img.card-img-top(src=product.Image)
+      .card-body
+        h5(class="card-title")=product.Name
+        p.card-text
+          p=product.Description
+        a.btn.btn-primary(href='#') Add to Cart
+  nav.align-bottom(aria-label='pagination')
+   ul.pagination.pagination-sm
+     li.page-item
+       a.page-link(href='/products?page='+ pageNumb)=pageNumb
+     li.page-item.active(aria-current='page')
+       span.page-link=pageNum
+         span.sr-only (current)  
+     li.page-item
+       a.page-link(href='/products?page='+ pageNuma)=pageNuma
+
+    
+ 
+ 
