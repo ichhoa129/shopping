@@ -15,9 +15,8 @@ block bootstrap
       img.card-img-top(src=product.Image)
       .card-body
         h5(class="card-title")=product.Name
-        p.card-text
-          p=product.Description
-        a.btn.btn-primary(href='#') Add to Cart
+        p.card-text=product.Description
+        a.btn.btn-primary(href='/cart/add/'+product.id) Add to Cart
   nav.align-bottom(aria-label='pagination')
    ul.pagination.pagination-sm
      li.page-item
