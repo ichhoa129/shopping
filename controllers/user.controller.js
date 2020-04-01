@@ -1,5 +1,7 @@
 const express = require("express");
 const db = require("../db");
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 const shortid = require("shortid");
 
 module.exports.index = (req, res) => {
@@ -27,6 +29,7 @@ module.exports.viewId = (req, res) => {
 // set users to database
 module.exports.postCreate = (req, res) => {
   req.body.id = shortid.generate();
+  req.body.avatar = 'uploads/'+req.file.filename;
   db.get("users")
     .push(req.body)
     .write();

@@ -10,6 +10,7 @@ block bootstrap
  table(class="table",style="width:80%")
   thread   
    tr
+    th Avatar
     th Name
     th Phone
     th Information
@@ -17,6 +18,8 @@ block bootstrap
    tbody 
    each user in users
     tr
+     td
+      img(src=user.avatar, alt="avatar", width="32")
      td(scope="row")=user.name
      td=user.phone
      td 
