@@ -639,31 +639,5 @@
     }
   ],
   "sessions": [
-    {
-      "id": "SGE1Et1uK",
-      "cart": {
-        "undefined": 1
-      }
-    },
-    {
-      "id": "bo4NHKNgs",
-      "cart": {
-        "3b990ff4-8fac-44ff-9e7a-c3afa086aaaf": 1,
-        "7511ccc4-3f46-431a-9bb8-d18f43c9a621": 1
-      }
-    },
-    {
-      "id": "1hVR84qGv",
-      "cart": {
-        "0a2fbb14-6bde-462d-8f2d-7924e0ab1e71": 2,
-        "3b990ff4-8fac-44ff-9e7a-c3afa086aaaf": 5
-      }
-    },
-    {
-      "id": "ZoYKuk0sK",
-      "cart": {
-        "3b990ff4-8fac-44ff-9e7a-c3afa086aaaf": 1
-      }
-    }
   ]
 }

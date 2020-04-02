@@ -1,32 +1,50 @@
-extends ../layout/common.pug 
-
-block bootstrap
- h1.mt-5 Products
-
- 
- form(action="/users/search" method="GET", class="d-flex justify-content-end ")
-  input(type="text", name="q",class="input-group-text")
-  button(class="btn btn-primary ml-2") Search
- 
- .row
-  each product in products
-   .col
-     .card.m-1(style='width: 15rem;')
-      img.card-img-top(src=product.Image)
-      .card-body
-        h5(class="card-title")=product.Name
-        p.card-text=product.Description
-        a.btn.btn-primary(href='/cart/add/'+product.id) Add to Cart
-  nav.align-bottom(aria-label='pagination')
-   ul.pagination.pagination-sm
-     li.page-item
-       a.page-link(href='/products?page='+ pageNumb)=pageNumb
-     li.page-item.active(aria-current='page')
-       span.page-link=pageNum
-         span.sr-only (current)  
-     li.page-item
-       a.page-link(href='/products?page='+ pageNuma)=pageNuma
-
+html
+ head
+ link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", crossorigin="anonymous")
+ body
+    nav.navbar.navbar-expand.navbar-light.bg-light
+     a.navbar-brand(href='/') Home
+     #navbarNav.collapse.navbar-collapse
+      ul.navbar-nav
+       li.nav-item
+        a.nav-link(href='/users') Users
+       li.nav-item
+        a.nav-link(href='/users/create') Create 
+       li.nav-item
+        a.nav-link(href='/products') Products
+       li.nav-item
+        a.nav-link.d-inline-flex(href='/products') Cart ( 
+          p.ml-1= sum 
+          p  ­  )   
+     if acc
+      p=acc.email
+    .container   
+     h1.mt-5 Products
+    
+     
+     form(action="/users/search" method="GET", class="d-flex justify-content-end ")
+      input(type="text", name="q",class="input-group-text")
+      button(class="btn btn-primary ml-2") Search
+     
+     .row
+      each product in products
+       .col
+         .card.m-1(style='width: 15rem;')
+          img.card-img-top(src=product.Image)
+          .card-body
+            h5(class="card-title")=product.Name
+            p.card-text=product.Description
+            a.btn.btn-primary(href='/cart/add/'+product.id) Add to Cart
+      nav.align-bottom(aria-label='pagination')
+       ul.pagination.pagination-sm
+         li.page-item
+           a.page-link(href='/products?page='+ pageNumb)=pageNumb
+         li.page-item.active(aria-current='page')
+           span.page-link=pageNum
+             span.sr-only (current)  
+         li.page-item
+           a.page-link(href='/products?page='+ pageNuma)=pageNuma
+    
     
  
  
