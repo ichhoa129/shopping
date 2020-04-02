@@ -1,0 +1,14 @@
+extends ../layout/common.pug
+
+block bootstrap
+ h1.mt-3 TRANSFER
+
+ form(method="POST")
+  input(type="hidden",name="_csrf", value=csrfToken)
+  .form-group
+    label(for='account') Account Id 
+    input#account.form-control(type='text',name ="accountId",placeholder="Account Id")
+  .form-group
+    label(for='amount') Amount
+    input#amount.form-control(type='number',name ="amount",placeholder="Amount")
+  button.btn.btn-primary Transfer
