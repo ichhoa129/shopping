@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const md5 = require('md5');
-const shortid = require("shortid");
-const db = require("../db");
+var Account = require('../models/account.model');
 
 router.get('/register',(req,res)=>res.render('auth/register'));
 router.post('/register',(req,res)=>{
@@ -11,7 +10,7 @@ router.post('/register',(req,res)=>{
     var cpassword = req.body.Cpassword;
     
     var harshedPass = md5(password);
-    var existedEmail = db.get('accounts').find({email: email}).value();
+    var existedEmail = Account.find({email:email});
     if(existedEmail){
          res.render('auth/register',{errors:['Email is already registed.']
         });
@@ -22,12 +21,9 @@ router.post('/register',(req,res)=>{
         return;
     }
     if(password === cpassword){
-        req.body.id = shortid.generate();
         req.body.password = harshedPass;
         delete req.body.Cpassword;
-        db.get("accounts")
-        .push(req.body)
-        .write();
+        Account.update(req.body);
     } 
     res.redirect("auth/login");
 })

@@ -2,7 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser= require('cookie-parser');
-const csurf = require('csurf')
+const mongoose = require('mongoose');
+//const csurf = require('csurf');
+mongoose.connect(process.env.MONGO_URL,
+    { useNewUrlParser: true,
+      useUnifiedTopology: true });
+
 
 const userRoutes = require('./routes/user.route');
 const authRoutes = require('./routes/auth.route');
@@ -20,7 +25,6 @@ const sessionMiddleware = require("./middlewares/session.middleware");
 
 const app = express();
 
-
 const port = 8000;
 
 //set view
@@ -29,9 +33,10 @@ app.set('views', './views');
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(sessionMiddleware);
-app.use(csurf({ cookie: true }));
+//app.use(csurf({ cookie: true }));
 
 //render index page
 app.get('/',(req,res) => res.render('index'));
@@ -44,4 +49,4 @@ app.use('/transfer',authMiddleware.requireAuth,transferRoutes);
 
 app.use(express.static('public'));
 
-app.listen(port,()=> console.log('Listening on port 8000'));
+app.listen(port,()=> console.log('Listening on port '+port));

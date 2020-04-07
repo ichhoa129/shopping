@@ -1,5 +1,5 @@
-var db = require('../db');
-var shortid = require('shortid');
+const Transfer = require('../models/transfer.model');
+
 
 module.exports.create = (req,res,next)=>{
  res.render('transfer/create',{
@@ -14,7 +14,6 @@ module.exports.postCreate= (req,res,next)=> {
         accountId: req.body.accountId,
         userId: req.signedCookies.accId
     }
-    
-    db.get('transfers').push(data).write();
+    Transfer.update(data);
     res.redirect('create');
 };

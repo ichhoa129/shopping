@@ -1,5 +1,5 @@
 const shortid = require("shortid");
-var db = require('../db');
+var Session = require('../models/session.model');
 
 
 module.exports = (req,res,next)=>{
@@ -9,7 +9,13 @@ module.exports = (req,res,next)=>{
           res.cookie('sessionId',sessionId,{
               signed: true 
           });   
-          db.get('sessions').push({id: sessionId}).write();
+          const mongoose = require('mongoose');
+          mongoose.connect(process.env.MONGO_URL,
+             { useNewUrlParser: true,
+               useUnifiedTopology: true },(err,db)=>{
+                 var newSession = db.collection('sessions');
+                 newSession.insertOne({_id:sessionId});  
+              });
       }
       next();
 }

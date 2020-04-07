@@ -1,4 +1,5 @@
 var db = require('../db');
+var Session = require('../models/session.model');
 
 module.exports.addToCart = (req,res,next)=>{
     var productId = req.params.productId;

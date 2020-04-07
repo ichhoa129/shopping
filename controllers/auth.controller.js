@@ -1,13 +1,13 @@
 const md5 = require('md5');
-const db = require("../db");
+const Account = require('../models/account.model');
 
 module.exports.login = (req, res) => {
   res.render("auth/login");
 };
-module.exports.postLogin = (req,res)=>{
+module.exports.postLogin = async (req,res)=>{
     var email= req.body.email;
     var password = req.body.password;
-    var acc = db.get('accounts').find({email: email}).value();
+    var acc = await Account.find({email: email});
     if(!acc){
         res.render('auth/login',{
             errors: ["Account does not exist. "],
@@ -16,12 +16,12 @@ module.exports.postLogin = (req,res)=>{
         return;
     }
     var encryptedPass = md5(password);
-    if(acc.password !== encryptedPass){
+    if(acc[0].password !== encryptedPass){
        res.render('auth/login',{ errors:['Wrong password.'], value: req.body});
        return;
     }
     
-    res.cookie('accId',acc.id,{
+    res.cookie('accId',acc._id,{
          signed: true
         });
     res.redirect('/users');

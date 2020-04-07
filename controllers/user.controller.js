@@ -1,40 +1,32 @@
 const express = require("express");
-const db = require("../db");
+const mongoose = require('mongoose');
+var User = require('../models/user.model');
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
-const shortid = require("shortid");
 
-module.exports.index = (req, res) => {
+
+module.exports.index = async (req, res) => {
+  var user = await User.find(); 
   res.render("users/index", {
-    users: db.get("users").value()
+    users: user
   });
 };
 module.exports.create = (req, res) => res.render("users/create");
 module.exports.search = (req, res) => {
   var name = req.query.name;
-  var matchedUsers = db
-    .get("users")
-    .value()
-    .filter(user => user.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
-  res.render("users/index", { users: matchedUsers });
+    User.find().then((users)=>{
+      var matchedUsers = users.filter(user => user.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
+      res.render("users/index", { users: matchedUsers });
+    });
 };
-module.exports.viewId = (req, res) => {
+module.exports.viewId = async (req, res) => {
   var id = req.params.id;
-  var user = db
-    .get("users")
-    .find({ id: id })
-    .value();
-  res.render("users/view", { user: user });
+  var user = await User.find({_id:id});
+  res.render("users/view", { user: user[0] });
 };
 // set users to database
-module.exports.postCreate = (req, res) => {
-  req.body.id = shortid.generate();
-  req.body.avatar = 'uploads/'+req.file.filename;
-  db.get("users")
-    .push(req.body)
-    .write();
-  res.redirect("/users");
-};
-module.exports.postDel = (req,res)=>{
-  var users = db.get('users').find
-}
+module.exports.postCreate =(req, res) => {
+      req.body.avatar = 'uploads/'+req.file.filename;
+      User.create(req.body);  
+      res.redirect("/users");
+    };
