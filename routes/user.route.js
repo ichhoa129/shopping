@@ -17,6 +17,5 @@ router.get('/view/:id',controller.viewId);
 
 //create users
 router.post('/create',upload.single('avatar'),validate.postCreate,controller.postCreate);
-router.post('/',)
 
 module.exports = router;

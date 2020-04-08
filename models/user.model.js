@@ -6,7 +6,6 @@ var userSchema = new mongoose.Schema({
      phone:'string',
      avatar: 'string' 
 });
-
 var User = mongoose.model('User', userSchema,'users');
 
 module.exports = User;

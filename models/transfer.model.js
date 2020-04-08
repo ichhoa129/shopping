@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var transferSchema = new mongoose.Schema({
      accountId: 'string',
-     amount:'number'
+     amount:'number',
+     userId: 'string'
      
 });
 

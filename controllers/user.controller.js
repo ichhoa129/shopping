@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require('mongoose');
 var User = require('../models/user.model');
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
@@ -22,6 +21,7 @@ module.exports.search = (req, res) => {
 module.exports.viewId = async (req, res) => {
   var id = req.params.id;
   var user = await User.find({_id:id});
+  console.log(user)
   res.render("users/view", { user: user[0] });
 };
 // set users to database

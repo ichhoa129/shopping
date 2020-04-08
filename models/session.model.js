@@ -4,8 +4,7 @@ var sessionSchema = new mongoose.Schema(
   {
     id: 'string',
     cart: {
-        productId:'string',
-        cartNum: 'number'
+        productId:'string' 
         } 
   });
 

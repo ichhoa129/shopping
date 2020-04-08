@@ -1,14 +1,14 @@
 require('dotenv').config();
 const express = require('express');
+
 const bodyParser = require('body-parser');
 const cookieParser= require('cookie-parser');
 const mongoose = require('mongoose');
-//const csurf = require('csurf');
 mongoose.connect(process.env.MONGO_URL,
     { useNewUrlParser: true,
       useUnifiedTopology: true });
 
-
+const csurf = require('csurf'); 
 const userRoutes = require('./routes/user.route');
 const authRoutes = require('./routes/auth.route');
 const productRoutes = require('./routes/product.route');
@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(sessionMiddleware);
-//app.use(csurf({ cookie: true }));
+
 
 //render index page
 app.get('/',(req,res) => res.render('index'));
@@ -45,6 +45,7 @@ app.use('/auth',authRoutes);
 app.use('/',regRoutes);
 app.use('/products',productRoutes);
 app.use('/cart',cartRoutes);
+app.use(csurf({ cookie: true }));
 app.use('/transfer',authMiddleware.requireAuth,transferRoutes);
 
 app.use(express.static('public'));
