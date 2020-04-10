@@ -31,4 +31,17 @@ module.exports.product= async (req,res)=>{
          });
     }
   
-}
+};
+module.exports.search = (req, res) => {
+    var title = req.query.title;
+      Product.find().then((products)=>{
+        var matchedProducts = products.filter(product => product.Name.toLowerCase().indexOf(title.toLowerCase()) !== -1);
+        
+        // var page = parseInt(req.query.page) || 1;
+        // var start = (page-1)*8;
+        // var end = page*8;
+        // var productPage = matchedProducts.slice(start,end);
+       
+        res.render("product/index", { products: matchedProducts});
+      });
+  };    
