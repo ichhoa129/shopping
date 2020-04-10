@@ -10,7 +10,6 @@ module.exports = (req,res,next)=>{
               signed: true 
           });   
           Session.create({id:sessionId}).catch((err)=>console.log(err.message));    
-               
       }
       next();
 }
