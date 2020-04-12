@@ -15,6 +15,7 @@ const productRoutes = require('./routes/product.route');
 const cartRoutes = require('./routes/cart.route');
 const regRoutes = require('./routes/register.route');
 const transferRoutes = require('./routes/transfer.route');
+const gameRoutes = require('./routes/game.route');
 
 
 const authMiddleware = require("./middlewares/auth.middleware");
@@ -47,6 +48,7 @@ app.use('/products',productRoutes);
 app.use('/cart',cartRoutes);
 app.use(csurf({ cookie: true }));
 app.use('/transfer',authMiddleware.requireAuth,transferRoutes);
+app.use('/game',gameRoutes);
 
 app.use(express.static('public'));
 

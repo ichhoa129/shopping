@@ -9,6 +9,8 @@ html
        li.nav-item
         a.nav-link(href='/users') Users
        li.nav-item
+         a.nav-link(href='/game') Game
+       li.nav-item
         a.nav-link(href='/users/create') Create 
        li.nav-item
         a.nav-link(href='/products') Products
@@ -35,9 +37,10 @@ html
             p.card-text=product.Description
             a.btn.btn-primary(href='/cart/add/'+product.id) Add to Cart
     
-    if pageNumb
-     nav.align-bottom.ml-10(aria-label='pagination')
-      ul.pagination.pagination-sm
+    if pageNum
+     .container
+      nav.align-bottom.mb-5(aria-label='pagination')
+       ul.pagination.pagination-sm
         li.page-item
           a.page-link(href='/products?page='+ pageNumb)=pageNumb
         li.page-item.active(aria-current='page')
