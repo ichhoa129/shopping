@@ -6,6 +6,8 @@ class Pipe {
        this.x = width;
        this.pipeWidth = 50;
        this.speed = 3;
+       
+       this.scored = true;
 
        this.highLight = false;
     }
@@ -19,6 +21,7 @@ class Pipe {
       this.highLight = false;
       return false;
     }
+    
     show(){
         fill(46,147,60);
         if(this.highLight){
