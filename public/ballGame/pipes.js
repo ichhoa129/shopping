@@ -4,7 +4,7 @@ class Pipe {
        this.top = random(height/6,3/4*height);
        this.bot = height - (this.top + this.spacing);
        this.x = width;
-       this.pipeWidth = 50;
+       this.pipeWidth = 60;
        this.speed = 3;
        
        this.scored = true;
@@ -21,7 +21,7 @@ class Pipe {
       this.highLight = false;
       return false;
     }
-    
+
     show(){
         fill(46,147,60);
         if(this.highLight){
